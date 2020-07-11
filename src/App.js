@@ -1,23 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import Register from "./pages/Register";
+import Confirmation from "./pages/Confirmation";
 import "./App.css";
 
 const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const user = localStorage.getItem("user");
+
+  useEffect(() => {
+    setIsLoggedIn(user ? true : false);
+  }, [user]);
+
   return (
-    <div className="App">
-      {/* <header className="App-header">        
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-    </div>
+    <Layout>
+      <Router>
+        <Switch>
+          <ProtectedRoute isLoggedIn={isLoggedIn} exact path="/">
+            <Home />
+          </ProtectedRoute>
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route path="/confirmation">
+            <Confirmation user={user} />
+          </Route>
+        </Switch>
+      </Router>
+    </Layout>
   );
 };
 
