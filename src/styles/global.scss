@@ -1,5 +1,6 @@
 @import "./include-media";
 
+// MIXINS
 @mixin modifiers($map, $attribute, $prefix: "-", $separator: "-") {
   @each $key, $value in $map {
     &#{$prefix}#{$key} {
@@ -17,7 +18,7 @@
 }
 
 @mixin transition {
-  transition: all 0.7s ease-in-out;
+  transition: all 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
 
 @mixin hover {
@@ -33,13 +34,28 @@
   box-shadow: 3px 2px 7px 1px #ccc;
 }
 
+// THEME COLORS
+$white: white;
+$light-gray: #cbd0d5;
+$dark-gray: #4a4a4a;
+$black: #000000;
+$orange: #ff5502;
+$pink: #ff017f;
+$red: #ff010d;
+$green: #01d809;
+
 $colors: (
-  "black": #000000,
-  "dark-gray": #4a4a4a,
-  "light-gray": #cbd0d5,
-  "white": white,
+  "black": $black,
+  "dark-gray": $dark-gray,
+  "light-gray": $light-gray,
+  "white": $white,
+  "orange": $orange,
+  "pink": $pink,
+  "red": $red,
+  "green": $green,
 );
 
+// ELEMENT STYLES RESET
 html {
   width: 100vw;
   margin: 0;
@@ -59,15 +75,15 @@ body {
   font-size: 35px;
   font-family: "Cabin", Sans-Serif;
   background-color: whitesmoke;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
 p,
 input,
 textarea {
   font-family: "Cabin", Sans-Serif;
   font-size: 0.75em;
 }
-
 h1,
 h2,
 h3,
@@ -78,25 +94,23 @@ label,
 button {
   font-family: "Roboto Condensed", Sans-Serif;
 }
-
 label,
 button {
   font-size: 0.75em;
 }
-
 input,
 textarea {
   @include border-radius;
   @include transition;
 
   padding: 0.5em;
-  border: thin solid map-get($map: $colors, $key: "light-gray");
+  border: thin solid $light-gray;
   margin: 0.25em 0 1em 0;
   outline: none;
   max-width: 100%;
 
   &::placeholder {
-    color: map-get($map: $colors, $key: "light-gray");
+    color: $light-gray;
     font-weight: 100;
   }
 
@@ -104,7 +118,7 @@ textarea {
     @include transition;
     @include shadow;
 
-    border: thin solid white;
+    border: thin solid $white;
   }
 
   &:hover {
@@ -112,32 +126,72 @@ textarea {
   }
 
   &:invalid:not(:placeholder-shown):not(focus) {
-    border: 1px solid red;
+    border: 1px solid $red;
+  }
+
+  &[type="password"]:invalid:focus:not(:placeholder-shown) {
+    & ~ .validation-text {
+      max-height: 4em;
+      margin-top: 2.5em;
+    }
   }
 
   &:valid {
-    border: 1px solid green;
-
-    button {
-      //animation for click?
-    }
+    border: 1px solid $green;
   }
 }
-
 button {
   @include border-radius;
   @include transition;
 
   padding: 0.5em 1em;
+  cursor: pointer;
   border-style: none;
+  background: linear-gradient(138deg, $orange, $pink, $red);
+  background-size: 300% 100%;
 
   &:hover {
     @include hover;
+    background-position: 100% 0;
   }
+}
+
+// CLASS STYLES
+.text {
+  @include modifiers($colors, "color");
+}
+
+.subtitle {
+  opacity: 85%;
+}
+
+.overline {
+  line-height: 0.7em;
+  font-weight: 500;
 }
 
 .align-right {
   text-align: right;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.group {
+  padding: 0.5em 0;
+
+  @include media(">=tablet") {
+    padding: 0.75em 0;
+  }
+}
+
+.validation-text {
+  @include transition;
+
+  font-size: 0.5em;
+  overflow: hidden;
+  max-height: 0;
 }
 
 .card {
@@ -163,6 +217,7 @@ button {
   }
 }
 
+// FLEXBOX GRID
 .container {
   display: flex;
   margin: auto;
@@ -181,42 +236,3 @@ button {
     justify-content: end;
   }
 }
-
-.m-0 {
-  margin: 0;
-}
-
-.text {
-  @include modifiers($colors, "color");
-}
-
-.subtitle {
-  opacity: 85%;
-}
-
-.overline {
-  line-height: 0.7em;
-  font-weight: 500;
-}
-
-.group {
-  padding: 0.5em 0;
-
-  @include media(">=tablet") {
-    padding: 0.75em 0;
-  }
-}
-
-.bg {
-  @include modifiers($colors, "background");
-}
-
-// @media (max-width: 400px) {
-//   .container {
-//     display: block;
-//     .col {
-//       width: 100%;
-//       margin: 0 0 10px 0;
-//     }
-//   }
-// }

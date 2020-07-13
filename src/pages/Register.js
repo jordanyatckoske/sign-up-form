@@ -49,7 +49,7 @@ const Register = () => {
             type="email"
             id="email"
             value={email}
-            placeholder="johnrox@gmail.com"
+            placeholder="johnrox@flipgrid.com"
             required
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -62,11 +62,15 @@ const Register = () => {
             type="password"
             id="password"
             value={password}
-            placeholder="asdf3X0"
+            placeholder="#1Flipper"
             required
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
             onChange={(e) => setPassword(e.target.value)}
           />
+          <p className="validation-text text-red">
+            Your password must be at least 8 characters long and include: at
+            least one uppercase, one lowercase, and one number.
+          </p>
           <div className="group col-full align-right text-white">
             <button className="text-white" type="submit">
               Sign Up

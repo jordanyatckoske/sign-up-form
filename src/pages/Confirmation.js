@@ -27,8 +27,10 @@ const Confirmation = () => {
         <h4 className="overline m-0">{user.email}</h4>
       </div>
       {/* onClick={() => localStorage.setItem("user", user)} */}
-      <div className="group align-right text-white">
-        <button onClick={(e) => handleLogIn(e)}>Log In</button>
+      <div className="group align-right">
+        <button className="text-white" onClick={(e) => handleLogIn(e)}>
+          Log In
+        </button>
       </div>
     </div>
   );
