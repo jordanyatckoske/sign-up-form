@@ -1,7 +1,10 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-const ProtectedRoute = ({ children, isLoggedIn, ...rest }) => {
+const ProtectedRoute = ({ children, ...rest }) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const isLoggedIn = user !== null ? true : false;
+
   return (
     <Route
       {...rest}
@@ -10,6 +13,7 @@ const ProtectedRoute = ({ children, isLoggedIn, ...rest }) => {
           children
         ) : (
           <Redirect
+            push={false}
             to={{
               pathname: "/register",
               state: { from: location },

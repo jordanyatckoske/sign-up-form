@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
@@ -8,26 +8,19 @@ import Confirmation from "./pages/Confirmation";
 import "./styles/global.scss";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  useEffect(() => {
-    setIsLoggedIn(user ? true : false);
-  }, [user, isLoggedIn]);
-
   return (
     <Layout className="container">
       <Router>
         <Switch>
-          <ProtectedRoute isLoggedIn={isLoggedIn} exact path="/">
+          <ProtectedRoute exact path="/">
             <Home />
           </ProtectedRoute>
           <Route path="/register">
             <Register />
           </Route>
-          <Route path="/confirmation">
+          <ProtectedRoute path="/confirmation">
             <Confirmation />
-          </Route>
+          </ProtectedRoute>
         </Switch>
       </Router>
     </Layout>
