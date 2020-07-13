@@ -1,3 +1,5 @@
+@import "./include-media";
+
 @mixin modifiers($map, $attribute, $prefix: "-", $separator: "-") {
   @each $key, $value in $map {
     &#{$prefix}#{$key} {
@@ -38,7 +40,22 @@ $colors: (
   "white": white,
 );
 
+html {
+  width: 100vw;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
 body {
+  margin: 0;
   font-size: 35px;
   font-family: "Cabin", Sans-Serif;
   background-color: whitesmoke;
@@ -76,6 +93,7 @@ textarea {
   border: thin solid map-get($map: $colors, $key: "light-gray");
   margin: 0.25em 0 1em 0;
   outline: none;
+  max-width: 100%;
 
   &::placeholder {
     color: map-get($map: $colors, $key: "light-gray");
@@ -125,11 +143,24 @@ button {
 .card {
   @include border-radius;
   @include shadow;
+  @include transition;
 
   background-color: white;
-  padding: 1em;
-  margin: auto;
+  flex: 100%;
+  padding: 0.5em;
+  margin: 0.5em auto;
   width: 90%;
+
+  @include media(">=tablet") {
+    width: 80%;
+    padding: 1em;
+    margin: 1em auto;
+  }
+
+  @include media(">=desktop") {
+    width: 70%;
+    max-width: 800px;
+  }
 }
 
 .container {
@@ -169,19 +200,23 @@ button {
 }
 
 .group {
-  padding: 0.75em 0;
+  padding: 0.5em 0;
+
+  @include media(">=tablet") {
+    padding: 0.75em 0;
+  }
 }
 
 .bg {
   @include modifiers($colors, "background");
 }
 
-@media (max-width: 400px) {
-  .container {
-    display: block;
-    .col {
-      width: 100%;
-      margin: 0 0 10px 0;
-    }
-  }
-}
+// @media (max-width: 400px) {
+//   .container {
+//     display: block;
+//     .col {
+//       width: 100%;
+//       margin: 0 0 10px 0;
+//     }
+//   }
+// }

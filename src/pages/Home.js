@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 
 const Home = () => {
   const history = useHistory();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const logOut = (e) => {
     e.preventDefault();
@@ -17,13 +18,14 @@ const Home = () => {
         </div>
       </header>
       <div className="group">
-        <h3 className="m-0 text-dark-gray overline">Hello,</h3>
+        <h3 className="m-0 text-dark-gray overline">Hello {user.firstName},</h3>
         <p className="subtitle text-dark-gray">
-          Thank you for taking a look through my project! If you would like to
-          register a new user, please log out first.
+          Thank you for signing up for this amazing service. I hope you enjoyed
+          your registration experience! If you would like to register a new
+          user, please log out first.
         </p>
       </div>
-      <div className="group">
+      <div className="group align-right">
         <button className="text-white" onClick={(e) => logOut(e)}>
           Log Out
         </button>
