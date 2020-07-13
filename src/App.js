@@ -5,18 +5,18 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Confirmation from "./pages/Confirmation";
-import "./App.css";
+import "./styles/global.scss";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const user = localStorage.getItem("user");
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     setIsLoggedIn(user ? true : false);
-  }, [user]);
+  }, [user, isLoggedIn]);
 
   return (
-    <Layout>
+    <Layout className="container">
       <Router>
         <Switch>
           <ProtectedRoute isLoggedIn={isLoggedIn} exact path="/">
@@ -26,7 +26,7 @@ const App = () => {
             <Register />
           </Route>
           <Route path="/confirmation">
-            <Confirmation user={user} />
+            <Confirmation />
           </Route>
         </Switch>
       </Router>

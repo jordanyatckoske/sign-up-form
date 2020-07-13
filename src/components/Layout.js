@@ -2,9 +2,8 @@ import React from "react";
 
 const Layout = ({ children }) => {
   return (
-    <div>
-      <main>{children}</main>
-      <footer>&copy; Jordan Yatckoske</footer>
+    <div className="container">
+      <main className="col-full">{children}</main>
     </div>
   );
 };

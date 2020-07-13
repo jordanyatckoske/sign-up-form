@@ -1,0 +1,187 @@
+@mixin modifiers($map, $attribute, $prefix: "-", $separator: "-") {
+  @each $key, $value in $map {
+    &#{$prefix}#{$key} {
+      @if type-of($value) == "map" {
+        @include modifiers($value, $attribute, $separator);
+      } @else {
+        #{$attribute}: $value;
+      }
+    }
+  }
+}
+
+@mixin border-radius {
+  border-radius: 0.5em;
+}
+
+@mixin transition {
+  transition: all 0.7s ease-in-out;
+}
+
+@mixin hover {
+  @include transition;
+  @include shadow;
+
+  opacity: 85%;
+}
+
+@mixin shadow {
+  -moz-box-shadow: 3px 2px 7px 1px #ccc;
+  -webkit-box-shadow: 3px 2px 7px 1px #ccc;
+  box-shadow: 3px 2px 7px 1px #ccc;
+}
+
+$colors: (
+  "black": #000000,
+  "dark-gray": #4a4a4a,
+  "light-gray": #cbd0d5,
+  "white": white,
+);
+
+body {
+  font-size: 35px;
+  font-family: "Cabin", Sans-Serif;
+  background-color: whitesmoke;
+}
+
+p,
+input,
+textarea {
+  font-family: "Cabin", Sans-Serif;
+  font-size: 0.75em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+button {
+  font-family: "Roboto Condensed", Sans-Serif;
+}
+
+label,
+button {
+  font-size: 0.75em;
+}
+
+input,
+textarea {
+  @include border-radius;
+  @include transition;
+
+  padding: 0.5em;
+  border: thin solid map-get($map: $colors, $key: "light-gray");
+  margin: 0.25em 0 1em 0;
+  outline: none;
+
+  &::placeholder {
+    color: map-get($map: $colors, $key: "light-gray");
+    font-weight: 100;
+  }
+
+  &:focus {
+    @include transition;
+    @include shadow;
+
+    border: thin solid white;
+  }
+
+  &:hover {
+    @include hover;
+  }
+
+  &:invalid:not(:placeholder-shown):not(focus) {
+    border: 1px solid red;
+  }
+
+  &:valid {
+    border: 1px solid green;
+
+    button {
+      //animation for click?
+    }
+  }
+}
+
+button {
+  @include border-radius;
+  @include transition;
+
+  padding: 0.5em 1em;
+  border-style: none;
+
+  &:hover {
+    @include hover;
+  }
+}
+
+.align-right {
+  text-align: right;
+}
+
+.card {
+  @include border-radius;
+  @include shadow;
+
+  background-color: white;
+  padding: 1em;
+  margin: auto;
+  width: 90%;
+}
+
+.container {
+  display: flex;
+  margin: auto;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  .col {
+    flex: 1;
+  }
+
+  .col-full {
+    flex: 100%;
+  }
+
+  .reverse {
+    justify-content: end;
+  }
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.text {
+  @include modifiers($colors, "color");
+}
+
+.subtitle {
+  opacity: 85%;
+}
+
+.overline {
+  line-height: 0.7em;
+  font-weight: 500;
+}
+
+.group {
+  padding: 0.75em 0;
+}
+
+.bg {
+  @include modifiers($colors, "background");
+}
+
+@media (max-width: 400px) {
+  .container {
+    display: block;
+    .col {
+      width: 100%;
+      margin: 0 0 10px 0;
+    }
+  }
+}

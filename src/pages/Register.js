@@ -10,22 +10,29 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem("user", { firstName, email });
+    localStorage.setItem("user", JSON.stringify({ firstName, email }));
     history.replace("/confirmation");
   };
 
   return (
-    <div>
-      <header>
-        <h1>Header Text</h1>
-        <p>
-          A brief paragrah with instructions on how to sign up for the service.
+    <div className="card">
+      <header className="">
+        <div className="group">
+          <h1 className="m-0 text-dark-gray overline">Let's</h1>
+          <h1 className="m-0">Sign Up</h1>
+        </div>
+        <p className="subtitle text-dark-gray">
+          Use the form below to sign up for this super awesome service. You're
+          only a few steps away!
         </p>
       </header>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="firstName">First Name</label>
+      <div className="group">
+        <form className="container" onSubmit={handleSubmit}>
+          <label className="col-full" htmlFor="firstName">
+            First Name
+          </label>
           <input
+            className="col-full"
             type="text"
             id="firstName"
             value={firstName}
@@ -34,8 +41,11 @@ const Register = () => {
             onChange={(e) => setFirstName(e.target.value)}
           />
 
-          <label htmlFor="email">Email</label>
+          <label className="col-full" htmlFor="email">
+            Email
+          </label>
           <input
+            className="col-full"
             type="email"
             id="email"
             value={email}
@@ -44,17 +54,24 @@ const Register = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <label htmlFor="password">Password</label>
+          <label className="col-full" htmlFor="password">
+            Password
+          </label>
           <input
+            className="col-full"
             type="password"
             id="password"
             value={password}
             placeholder="asdf3X0"
             required
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
             onChange={(e) => setPassword(e.target.value)}
           />
-
-          <button type="submit">Sign Up</button>
+          <div className="group col-full align-right text-white">
+            <button className="text-white" type="submit">
+              Sign Up
+            </button>
+          </div>
         </form>
       </div>
     </div>
