@@ -13,7 +13,6 @@ const ProtectedRoute = ({ children, ...rest }) => {
           children
         ) : (
           <Redirect
-            push={false}
             to={{
               pathname: "/register",
               state: { from: location },
