@@ -25,7 +25,7 @@
   @include transition;
   @include shadow;
 
-  opacity: 85%;
+  opacity: 0.85;
 }
 
 @mixin shadow {
@@ -163,7 +163,7 @@ button {
 }
 
 .subtitle {
-  opacity: 85%;
+  opacity: 0.85;
 }
 
 .overline {
