@@ -6,7 +6,7 @@ In this application, you can register a new user with an awesome service and you
 
 ## View the Application
 
-You can view this application <a href="https://flipgrid-sign-up.netlify.app/" target="_blank" title="Sign up for this service on Netlify!">hosted on Netlify</a>, or you can clone the repo and use the `yarn start` command to run in devlopment mode. 
+You can view this application <a target="_blank" href="https://flipgrid-sign-up.netlify.app/" title="Sign up for this service on Netlify!">hosted on Netlify</a>, or you can clone the repo and use the `yarn start` command to run in devlopment mode. 
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app "Sign-Up for this awesome service on Netlify").
