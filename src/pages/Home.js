@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   const history = useHistory();
@@ -12,13 +13,16 @@ const Home = () => {
   };
   return (
     <div className="card">
+      <Helmet>
+        <title>Awesome Service | Home</title>
+      </Helmet>
       <header className="">
         <div className="group">
           <h1>Home</h1>
         </div>
       </header>
       <div className="group">
-        <h3 className="m-0 text-dark-gray overline">Hello {user.firstName},</h3>
+        <h2 className="m-0 text-dark-gray overline">Hello {user.firstName},</h2>
         <p className="subtitle text-dark-gray">
           Thank you for signing up for this amazing service. I hope you enjoyed
           your registration experience! If you would like to register a new

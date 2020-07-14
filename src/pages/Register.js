@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -16,6 +17,9 @@ const Register = () => {
 
   return (
     <div className="card">
+      <Helmet>
+        <title>Awesome Service | Register</title>
+      </Helmet>
       <header className="">
         <div className="group">
           <h1 className="m-0 text-dark-gray overline">Let's</h1>

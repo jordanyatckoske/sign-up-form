@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Confirmation = () => {
   const history = useHistory();
@@ -11,10 +12,13 @@ const Confirmation = () => {
 
   return (
     <div className="card">
+      <Helmet>
+        <title>Confirmation | {user.firstName}</title>
+      </Helmet>
       <header>
         <div className="group">
           <h1 className="m-0 text-dark-gray overline">Welcome,</h1>
-          <h1 className="m-0">{user.firstName}</h1>
+          <h1 className="m-0">{user.firstName}!</h1>
         </div>
       </header>
       <div className="group">
@@ -24,9 +28,8 @@ const Confirmation = () => {
         </p>
       </div>
       <div className="group">
-        <h4 className="overline m-0">{user.email}</h4>
+        <p className="overline m-0">{user.email}</p>
       </div>
-      {/* onClick={() => localStorage.setItem("user", user)} */}
       <div className="group align-right">
         <button className="text-white" onClick={(e) => handleLogIn(e)}>
           Log In
