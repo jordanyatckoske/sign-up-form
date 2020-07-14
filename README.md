@@ -1,6 +1,6 @@
 # Sign-Up Form
 
-This project is a signup form used as a preliminary project for an interview. The project makes use of CRA, SCSS styles, React-Router, Helmet, Hooks, and React-Transition-Group.
+This project is a sign-up form used as a preliminary project for an interview. The project makes use of CRA, SCSS styles, React-Router, Helmet, Hooks, and React-Transition-Group.
 
 In this application, you can register a new user with an awesome service and you will see a confirmation screen with the details on the new user. Then by logging into the service, you will be routed to a Home page with a welcome message.
 
