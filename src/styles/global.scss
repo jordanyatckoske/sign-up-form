@@ -265,3 +265,27 @@ button {
   top: 0;
   left: 0;
 }
+
+// CUSTOM SCROLLBAR
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: $white;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: $white;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $red;
+  border-radius: 10px;
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.44, $orange),
+    color-stop(0.72, $pink),
+    color-stop(0.86, $red)
+  );
+}
