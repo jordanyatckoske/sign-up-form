@@ -1,10 +1,15 @@
-# Sign-Up Form
+# Sign-Up Form ![Green Plus Icon](/public/favicon-32x32.png "Green Plus Icon")
 
-This project is a signup form used as a preliminary project for an interview. The project makes use of CRA, SCSS styles, React-Router, Helmet, Hooks, and React-Transition-Group.
+This project is a sign-up form used as a preliminary project for an interview. The project makes use of CRA, SCSS styles, React-Router, Helmet, Hooks, and React-Transition-Group.
 
 In this application, you can register a new user with an awesome service and you will see a confirmation screen with the details on the new user. Then by logging into the service, you will be routed to a Home page with a welcome message.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## View the Application
+
+You can view this application <a target="_blank" href="https://flipgrid-sign-up.netlify.app/" title="Sign up for this service on Netlify!">hosted on Netlify</a>, or you can clone the repo and use the `yarn start` command to run in devlopment mode. 
+
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app "Sign-Up for this awesome service on Netlify").
 
 ### `yarn start`
 
